@@ -3,8 +3,7 @@ using CSharpProject.Interfaces;
 using CSharpProject.Models;
 using CSharpProject.Services;
 using Newtonsoft.Json;
-using System.ComponentModel.Design;
-using System.Globalization;
+
 
 
 namespace CSharpProject.Repositories
@@ -12,9 +11,10 @@ namespace CSharpProject.Repositories
     public class PersonRepository : IPersonRepository
     {
         private readonly FileService fileService = new FileService(@"D:\CSharpProjects\content.json");
-        private List<Person> contentList = new List<Person>();
-  
 
+
+        private List<Person> contentList = new List<Person>();
+ 
 
         // hämta hela listan
         public List<Person> GetPersonList()

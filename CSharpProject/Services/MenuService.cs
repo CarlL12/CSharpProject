@@ -8,19 +8,15 @@ namespace CSharpProject.Services;
 public class MenuService : IMenuService
 {
 
-    PersonRepository personRepository = new PersonRepository();
-    private readonly IPersonRepository _personrepository;
+    
+    private readonly PersonRepository personRepository;
 
-    public MenuService( IPersonRepository personRepository)
+    public MenuService( PersonRepository personrepository)
     {
-        _personrepository = personRepository;
+        personRepository = personrepository;
        
     }
 
-    public MenuService()
-    {
-       
-    }
 
     public void ShowMeny()
     {
