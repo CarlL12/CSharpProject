@@ -9,13 +9,7 @@ public class MenuService : IMenuService
 {
 
     
-    private readonly PersonRepository personRepository;
-
-    public MenuService( PersonRepository personrepository)
-    {
-        personRepository = personrepository;
-       
-    }
+    PersonRepository personRepository = new PersonRepository();
 
 
     public void ShowMeny()
