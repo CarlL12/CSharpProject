@@ -3,6 +3,7 @@ using CSharpProject.Interfaces;
 using CSharpProject.Models;
 using CSharpProject.Services;
 using Newtonsoft.Json;
+using System.ComponentModel.Design;
 using System.Globalization;
 
 
@@ -16,15 +17,20 @@ namespace CSharpProject.Repositories
 
 
         // hämta hela listan
-        public void GetPersonList()
+        public List<Person> GetPersonList()
         {
             var content = fileService.GetContentFromFile();
 
             if (content != null)
             {
                 contentList = JsonConvert.DeserializeObject<List<Person>>(content)!;
+      
             }
-
+            else
+            {
+                contentList = new List<Person>();
+            }
+            return contentList;
         }
         // lägga till person i listan
         public void AddPerson(Person person)
@@ -36,7 +42,7 @@ namespace CSharpProject.Repositories
             }
             else
             {
-                Console.WriteLine("Person already exists");
+                Console.WriteLine("Personen finns redan!");
             }
 
         }
@@ -48,11 +54,11 @@ namespace CSharpProject.Repositories
 
             if (DeletePerson == null)
             {
-                Console.WriteLine("Could not find person");
+                Console.WriteLine("Kunda inte hitta person!");
             }
             else
             {
-                Console.WriteLine($"{DeletePerson.FirstName} {DeletePerson.LastName} was deleted from the list.");
+                Console.WriteLine($"{DeletePerson.FirstName} {DeletePerson.LastName} togs bort ifrån listan.");
 
                 contentList.Remove(DeletePerson);
                 fileService.SaveContentToFile(JsonConvert.SerializeObject(contentList));
@@ -60,41 +66,21 @@ namespace CSharpProject.Repositories
         }
 
 
-        // visa person i listan
-        public void ShowPerson(string email)
+        // Retunerar en person i listan
+        public Person ShowPerson(string email)
         {
 
             Person personShow = contentList.Find(x => x.Email == email)!;
-
-            if (personShow == null)
-            {
-                Console.WriteLine("Could not find person");
-            }
-            else
-            {
-                Console.WriteLine($"Förnamn:  {personShow.FirstName} ");
-                Console.WriteLine($"Efternamn: {personShow.LastName} ");
-                Console.WriteLine($"Email-adress: {personShow.Email} ");
-                Console.WriteLine($"Phone number: {personShow.PhoneNumber} ");
-                Console.WriteLine($"Adress: {personShow.Adress} ");
-                Console.ReadKey();
-            }
-
+            return personShow ??= null!;
 
         }
 
-        // visa alla i listan
-        public void ShowAllPersons()
+        // Retunerar hela listan
+        public List<Person> ShowAllPersons()
         {
-            foreach (Person person in contentList)
-            {
-                Console.WriteLine($"Förnamn: {person.FirstName}");
-                Console.WriteLine($"Efternamn: {person.LastName}");
-                Console.WriteLine($"Email-adress: {person.Email}");
-                Console.WriteLine($"Telefon nummer: {person.PhoneNumber}");
-                Console.WriteLine($"Adress: {person.Adress}");
-                Console.WriteLine("-------------");
-            }
+
+
+            return contentList ??= null!;
         }
 
         // Kollar ifall det finns en lista

@@ -5,11 +5,11 @@ namespace CSharpProject.Interfaces
     public interface IPersonRepository
     {
         void AddPerson(Person person);
-        void GetPersonList();
+        List<Person> GetPersonList();
         bool HasPersonList();
         void RemovePerson(string email);
-        void ShowAllPersons();
-        void ShowPerson(string email);
+        List<Person> ShowAllPersons();
+        Person ShowPerson(string email);
 
 
     }

@@ -9,7 +9,18 @@ public class MenuService : IMenuService
 {
 
     PersonRepository personRepository = new PersonRepository();
+    private readonly IPersonRepository _personrepository;
 
+    public MenuService( IPersonRepository personRepository)
+    {
+        _personrepository = personRepository;
+       
+    }
+
+    public MenuService()
+    {
+       
+    }
 
     public void ShowMeny()
     {
@@ -19,7 +30,7 @@ public class MenuService : IMenuService
         {
             CreateListMenu();
         }
-
+        // kör igenom menyn
         while (true)
         {
             personRepository.GetPersonList();
@@ -41,10 +52,10 @@ public class MenuService : IMenuService
                     ShowPersonMenu();
                     break;
                 case 3:
-                    ShowAllMenu();
+                    DeletePersonMenu();
                     break;
                 case 4:
-                    DeletePersonMenu();
+                    ShowAllMenu();
                     break;
 
             }
@@ -62,9 +73,9 @@ public class MenuService : IMenuService
         person.FirstName = Console.ReadLine()!;
         Console.Write("Efternamn:");
         person.LastName = Console.ReadLine()!;
-        Console.Write("Email-addres:");
+        Console.Write("Email-address:");
         person.Email = Console.ReadLine()!;
-        Console.Write("Telefon nummer :");
+        Console.Write("Telefon-nummer :");
         person.PhoneNumber = Console.ReadLine()!;
         Console.Write("Adress :");
         person.Adress = Console.ReadLine()!;
@@ -81,9 +92,9 @@ public class MenuService : IMenuService
         person.FirstName = Console.ReadLine()!;
         Console.Write("Efternamn:");
         person.LastName = Console.ReadLine()!;
-        Console.Write("Email-addres:");
+        Console.Write("Email-address:");
         person.Email = Console.ReadLine()!;
-        Console.Write("Telefon nummer :");
+        Console.Write("Telefon-nummer :");
         person.PhoneNumber = Console.ReadLine()!;
         Console.Write("Adress :");
         person.Adress = Console.ReadLine()!;
@@ -98,13 +109,35 @@ public class MenuService : IMenuService
         Console.Write("Ange email-adress på den du vill hitta: ");
         string email = Console.ReadLine()!;
         Console.Clear();
-        personRepository.ShowPerson(email);
+        var personShow = personRepository.ShowPerson(email);
+        if (personShow == null)
+        {
+            Console.WriteLine("Kunde inte hitta person");
+        }
+        else
+        {
+            Console.WriteLine($"Förnamn:  {personShow.FirstName} ");
+            Console.WriteLine($"Efternamn: {personShow.LastName} ");
+            Console.WriteLine($"Email-adress: {personShow.Email} ");
+            Console.WriteLine($"Telefon-nummer: {personShow.PhoneNumber} ");
+            Console.WriteLine($"Adress: {personShow.Adress} ");
+
+        }
         Console.WriteLine("Tryck på valfri knapp för att komma till meny.");
     }
     // visar alla personer i listan
     public void ShowAllMenu()
     {
-        personRepository.ShowAllPersons();
+        List<Person> contentList = personRepository.ShowAllPersons();
+        foreach (Person person in contentList)
+        {
+            Console.WriteLine($"Förnamn: {person.FirstName}");
+            Console.WriteLine($"Efternamn: {person.LastName}");
+            Console.WriteLine($"Email-adress: {person.Email}");
+            Console.WriteLine($"Telefon nummer: {person.PhoneNumber}");
+            Console.WriteLine($"Adress: {person.Adress}");
+            Console.WriteLine("-------------");
+        }
         Console.WriteLine("Tryck på valfri knapp för att komma till meny.");
     }
     // tar bort en person ifrån listan

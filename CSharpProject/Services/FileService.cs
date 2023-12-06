@@ -1,6 +1,7 @@
 ﻿
 using System.Diagnostics;
 using CSharpProject.Interfaces;
+using CSharpProject.Models;
 namespace CSharpProject.Services;
 
 public class FileService(string filePath) : IFileService
