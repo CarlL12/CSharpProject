@@ -12,7 +12,7 @@ namespace CSharpProject.Repositories
     {
         private readonly FileService fileService = new FileService(@"D:\CSharpProjects\content.json");
 
-
+         // skapar lista för att lagra personer i
         private List<Person> contentList = new List<Person>();
  
 
