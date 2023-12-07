@@ -1,8 +1,6 @@
 ﻿
-using CSharpProject.Repositories;
 using CSharpProject.Services;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+
 
 namespace CSharpProject
 {
@@ -10,16 +8,10 @@ namespace CSharpProject
     {
         static void Main(string[] args)
         {
-            var builder = Host.CreateDefaultBuilder().ConfigureServices(services =>
-            {
-                services.AddSingleton<MenuService>();
-                services.AddSingleton<PersonRepository>();
-            }).Build();
+            
+            MenuService menuService = new MenuService();
 
-            builder.Start();
-            Console.Clear();
-            var menuservice = builder.Services.GetService<MenuService>()!;
-            menuservice.ShowMeny();
+            menuService.ShowMeny();
             
         }
     }
