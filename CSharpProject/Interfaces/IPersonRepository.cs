@@ -7,7 +7,7 @@ namespace CSharpProject.Interfaces
         void AddPerson(Person person);
         List<Person> GetPersonList();
         bool HasPersonList();
-        void RemovePerson(string email);
+        bool RemovePerson(Person person);
         List<Person> ShowAllPersons();
         Person ShowPerson(string email);
 

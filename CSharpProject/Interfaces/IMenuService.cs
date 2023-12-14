@@ -1,4 +1,6 @@
-﻿namespace CSharpProject.Interfaces
+﻿using CSharpProject.Models;
+
+namespace CSharpProject.Interfaces
 {
     public interface IMenuService
     {

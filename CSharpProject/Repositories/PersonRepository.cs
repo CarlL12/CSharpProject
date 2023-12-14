@@ -14,7 +14,9 @@ namespace CSharpProject.Repositories
 
          // skapar lista för att lagra personer i
         private List<Person> contentList = new List<Person>();
- 
+
+        public Person CurrentPerson { get; set; } = new Person();
+
 
         // hämta hela listan
         public List<Person> GetPersonList()
@@ -26,10 +28,7 @@ namespace CSharpProject.Repositories
                 contentList = JsonConvert.DeserializeObject<List<Person>>(content)!;
       
             }
-            else
-            {
-                contentList = new List<Person>();
-            }
+
             return contentList;
         }
         // lägga till person i listan
@@ -47,21 +46,21 @@ namespace CSharpProject.Repositories
 
         }
         // ta bort person ifrån listan
-        public void RemovePerson(string email)
+        public bool RemovePerson(Person person)
         {
 
-            Person DeletePerson = contentList.Find(x => x.Email == email)!;
+            
 
-            if (DeletePerson == null)
+            if (!contentList.Contains(person))
             {
-                Console.WriteLine("Kunda inte hitta person!");
+                return false;
             }
             else
             {
-                Console.WriteLine($"{DeletePerson.FirstName} {DeletePerson.LastName} togs bort ifrån listan.");
 
-                contentList.Remove(DeletePerson);
+                contentList.Remove(person);
                 fileService.SaveContentToFile(JsonConvert.SerializeObject(contentList));
+                return true;
             }
         }
 

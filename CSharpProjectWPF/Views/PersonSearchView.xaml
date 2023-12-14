@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="CSharpProjectWPF.Views.PersonSearchView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CSharpProjectWPF.Views"
+             xmlns:models="clr-namespace:CSharpProject.Models;assembly=CSharpProject"
+             xmlns:viewmodels="clr-namespace:CSharpProjectWPF.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:PersonSearchViewModel}"
+             Background="white"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Content="Search for specifik product" HorizontalAlignment="Center" />
+        <TextBox Text="{Binding Title}" Grid.Row="1" Margin="5" Padding="5"/>
+        <Button Grid.Row="2" Command="{Binding SearchCommand}" Content="Search"></Button>
+        <StackPanel Grid.Row="3">
+            <TextBlock Text="{Binding FoundPerson.FirstName}"/>
+            <TextBlock Text="{Binding FoundPerson.LastName }"/>
+            <TextBlock Text="{Binding FoundPerson.Email }"/>
+            <TextBlock Text="{Binding FoundPerson.PhoneNumber }"/>
+            <TextBlock Text="{Binding FoundPerson.Adress }"/>
+            <Button Command="{Binding NavigateToMainMenuCommand}" Content="Return to main menu"></Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

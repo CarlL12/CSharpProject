@@ -135,8 +135,10 @@ public class MenuService : IMenuService
     {
         Console.Write("Ange email-adress på den du vill ta bort: ");
         string email = Console.ReadLine()!;
+        Person person = new Person();
+        person.Email = email;
         Console.Clear();
-        personRepository.RemovePerson(email);
+        personRepository.RemovePerson(person);
         Console.WriteLine("Tryck på valfri knapp för att komma till meny.");
     }
 }
