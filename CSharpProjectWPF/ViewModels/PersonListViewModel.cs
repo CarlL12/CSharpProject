@@ -24,6 +24,7 @@ public partial class PersonListViewModel : ObservableObject
     [ObservableProperty]
 
     private ObservableCollection<Person> _personList = [];
+
     [ObservableProperty]
     private Person person = new Person();
 
