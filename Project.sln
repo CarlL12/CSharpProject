@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpProject", "CSharpProj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpProject.Tests", "CSharpProject.Tests\CSharpProject.Tests.csproj", "{0D45EF1E-52DB-4404-8EB9-696B16D67B12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpProjectWPF", "CSharpProjectWPF\CSharpProjectWPF.csproj", "{F8C340B0-0335-4B58-A728-D36F86E8E803}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpProjectWPF", "CSharpProjectWPF\CSharpProjectWPF.csproj", "{F8C340B0-0335-4B58-A728-D36F86E8E803}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

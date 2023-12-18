@@ -29,14 +29,11 @@ public partial class UpdatePersonViewModel : ObservableObject
     }
 
 
-
-
-
     [RelayCommand]
     private void NavigateToList()
     {
-        _personRepository.RemovePerson(SelectedPerson);
-        _personRepository.AddPerson(UpdatedPerson);
+        _personRepository.UpdatePerson(SelectedPerson);
+
         var mainViewModel = _sp.GetRequiredService<MainViewModel>();
         mainViewModel.CurrentViewModel = _sp.GetRequiredService<PersonListViewModel>();
     }

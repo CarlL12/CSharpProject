@@ -29,7 +29,7 @@
             <TextBox Padding="5" Text="{Binding PersonForm.PhoneNumber}"/>
             <Label Content="Enter Adress"/>
             <TextBox Padding="5" Text="{Binding PersonForm.Adress}"/>
-            <Button Padding="5" Margin="0, 20" Content="Add to person to list" Command="{Binding AddProductTolistCommand}"/>
+            <Button Padding="5" Margin="0, 20" Content="Add to person to list" Command="{Binding AddPersonTolistCommand}"/>
 
         </StackPanel>
         <Button Content="Navigate to Main Menu" Command="{Binding NavigateToMainMenuCommand}" VerticalAlignment="Center" Grid.Row="2" Padding="5"/>

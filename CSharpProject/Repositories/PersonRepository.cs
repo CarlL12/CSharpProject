@@ -3,6 +3,7 @@ using CSharpProject.Interfaces;
 using CSharpProject.Models;
 using CSharpProject.Services;
 using Newtonsoft.Json;
+using System.Reflection.Metadata.Ecma335;
 
 
 
@@ -18,6 +19,7 @@ namespace CSharpProject.Repositories
         public Person CurrentPerson { get; set; } = new Person();
 
 
+        
         // hämta hela listan
         public List<Person> GetPersonList()
         {
@@ -26,10 +28,15 @@ namespace CSharpProject.Repositories
             if (content != null)
             {
                 contentList = JsonConvert.DeserializeObject<List<Person>>(content)!;
-      
-            }
 
-            return contentList;
+                return contentList;
+                
+            }
+            else
+            {
+                return null!;
+            }
+            
         }
         // lägga till person i listan
         public void AddPerson(Person person)
@@ -41,7 +48,7 @@ namespace CSharpProject.Repositories
             }
             else
             {
-                Console.WriteLine("Personen finns redan!");
+
             }
 
         }
@@ -49,7 +56,6 @@ namespace CSharpProject.Repositories
         public bool RemovePerson(Person person)
         {
 
-            
 
             if (!contentList.Contains(person))
             {
@@ -63,13 +69,31 @@ namespace CSharpProject.Repositories
                 return true;
             }
         }
+        // Uppdatera person i listan
+        public bool UpdatePerson(Person updatedPerson)
+        {
+            
+            Person existingPerson = contentList.FirstOrDefault(x => x.Email == updatedPerson.Email)!;
+            if (existingPerson != null)
+            {      
+                existingPerson.FirstName = updatedPerson.FirstName;
+                existingPerson.LastName = updatedPerson.LastName;
+                existingPerson.Email = updatedPerson.Email;
+                existingPerson.Adress = updatedPerson.Adress;
+                existingPerson.PhoneNumber = updatedPerson.PhoneNumber;
+                fileService.SaveContentToFile(JsonConvert.SerializeObject(contentList));
+                return true;
+            }
+
+            return false;
+        }
 
 
         // Retunerar en person i listan
-        public Person ShowPerson(string email)
+        public Person ShowPerson(string searchTerm)
         {
 
-            Person personShow = contentList.Find(x => x.Email == email)!;
+            Person personShow = contentList.Find(x => x.Email == searchTerm || x.FirstName == searchTerm)!;
             return personShow ??= null!;
 
         }
@@ -86,8 +110,14 @@ namespace CSharpProject.Repositories
         public bool HasPersonList()
         {
             var content = fileService.GetContentFromFile();
-            return !string.IsNullOrEmpty(content);
+            if(content != null)
+            {
+                return true;
+            }
+            return false;
+            
+            
         }
-
+        
     }
 }

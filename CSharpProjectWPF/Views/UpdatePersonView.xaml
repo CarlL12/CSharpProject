@@ -17,20 +17,29 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Margin="30, 0,0,0"  Content="Uppdatera information för" />
-        <Label  Content="{Binding SelectedPerson.FirstName}" />
+        <StackPanel Grid.Row="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0"  HorizontalAlignment="center" Content="Uppdatera information för" />
+                <Label  HorizontalAlignment="Center"  Content="{Binding SelectedPerson.FirstName}" Grid.Row="1"/>
+            </Grid>
+        </StackPanel>
+
 
         <StackPanel Grid.Row="1">
             <Label Content="Enter new first name"/>
-            <TextBox Padding="5" Text="{Binding UpdatedPerson.FirstName}"/>
+            <TextBox Padding="5" Text="{Binding SelectedPerson.FirstName}"/>
             <Label Content="Enter new last name"/>
-            <TextBox Padding="5" Text="{Binding UpdatedPerson.LastName}"/>
+            <TextBox Padding="5" Text="{Binding SelectedPerson.LastName}"/>
             <Label Content="Enter new email"/>
-            <TextBox Padding="5" Text="{Binding UpdatedPerson.Email}"/>
+            <TextBox Padding="5" Text="{Binding SelectedPerson.Email}"/>
             <Label Content="Enter new phone number"/>
-            <TextBox Padding="5" Text="{Binding UpdatedPerson.PhoneNumber}"/>
+            <TextBox Padding="5" Text="{Binding SelectedPerson.PhoneNumber}"/>
             <Label Content="Enter new adress"/>
-            <TextBox Padding="5" Text="{Binding UpdatedPerson.Adress}"/>
+            <TextBox Padding="5" Text="{Binding SelectedPerson.Adress}"/>
             <Button  Command="{Binding NavigateToListCommand}" Content="SAVE" Margin="10"/>
         </StackPanel>
 

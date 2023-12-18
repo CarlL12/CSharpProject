@@ -15,18 +15,38 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Content="Search for specifik product" HorizontalAlignment="Center" />
-        <TextBox Text="{Binding Title}" Grid.Row="1" Margin="5" Padding="5"/>
-        <Button Grid.Row="2" Command="{Binding SearchCommand}" Content="Search"></Button>
-        <StackPanel Grid.Row="3">
-            <TextBlock Text="{Binding FoundPerson.FirstName}"/>
-            <TextBlock Text="{Binding FoundPerson.LastName }"/>
-            <TextBlock Text="{Binding FoundPerson.Email }"/>
-            <TextBlock Text="{Binding FoundPerson.PhoneNumber }"/>
-            <TextBlock Text="{Binding FoundPerson.Adress }"/>
-            <Button Command="{Binding NavigateToMainMenuCommand}" Content="Return to main menu"></Button>
+        <StackPanel Grid.Row="0">
+            <Label Content="Search for specific person" HorizontalAlignment="Center" />
+            <Label Content="Enter either email or first name" HorizontalAlignment="Center"/>
+            <TextBox Margin="30,0" Text="{Binding SearchTerm}" Grid.Row="1"  Padding="5"/>
+            <Button Margin="100,5" Padding="6" Grid.Row="2" Command="{Binding SearchCommand}" Content="Search"></Button>
         </StackPanel>
+
+        <StackPanel Grid.Row="1" Background="LightGray">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <TextBlock Padding="5"  Margin="0,0,0,5" Text="First name" Background="LightSlateGray"/>
+                    <TextBlock Padding="5" Margin="0,0,0,5" Text="Last name" Background="LightSlateGray"/>
+                    <TextBlock Padding="5" Margin="0,0,0,5" Text="Email-adress" Background="LightSlateGray"/>
+                    <TextBlock Padding="5" Margin="0,0,0,5" Text="Phone number " Background="LightSlateGray"/>
+                    <TextBlock Padding="5" Margin="0,0,0,5" Text="Adress" Background="LightSlateGray"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Margin="0,0,0,5" Padding="5" Text="{Binding FoundPerson.FirstName}" Background="DarkGray"/>
+                    <TextBlock Margin="0,0,0,5" Padding="5" Text="{Binding FoundPerson.LastName }" Background="DarkGray" />
+                    <TextBlock Margin="0,0,0,5" Padding="5" Text="{Binding FoundPerson.Email }" Background="DarkGray" />
+                    <TextBlock Margin="0,0,0,5" Padding="5" Text="{Binding FoundPerson.PhoneNumber }" Background="DarkGray" />
+                    <TextBlock Margin="0,0,0,5" Padding="5" Text="{Binding FoundPerson.Adress }" Background="DarkGray"/>
+                </StackPanel>
+
+            </Grid>
+
+        </StackPanel>
+        <Button Grid.Row="2" Command="{Binding NavigateToMainMenuCommand}" Content="Return to main menu"></Button>
     </Grid>
 </UserControl>

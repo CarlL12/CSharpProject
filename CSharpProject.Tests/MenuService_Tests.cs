@@ -5,6 +5,7 @@ using CSharpProject.Models;
 using CSharpProject.Repositories;
 using CSharpProject.Services;
 using Moq;
+using System.Linq;
 
 namespace CSharpProject.Tests
 {
@@ -15,7 +16,7 @@ namespace CSharpProject.Tests
         {
             // Arrange
             var personRepositoryMock = new Mock<IPersonRepository>();
-            var menuService = new MenuService(personRepositoryMock.Object);
+            var menuService = new MenuService();
            
 
             // Act
@@ -60,15 +61,15 @@ namespace CSharpProject.Tests
                 FirstName = "Carl",
                 LastName = "Lindqvist"
             };
-            string email = "carl@domain.com";
+            
 
             //Act
             personRepository.AddPerson(person);
-            personRepository.RemovePerson(email);
+            personRepository.RemovePerson(person);
 
             //Assert
             List<Person> personsList = personRepository.GetPersonList();
-            bool personExists = personsList.Any(p => p.Email == email);
+            bool personExists = personsList.Any(p => p.Email == person.Email);
             Assert.False(personExists); 
         }   
         [Fact]

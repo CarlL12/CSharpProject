@@ -20,7 +20,7 @@ public partial class PersonSearchViewModel : ObservableObject
     }
 
     [ObservableProperty]
-    private string _email = null!;
+    private string _searchTerm = null!;
 
     [ObservableProperty]
     private Person _foundPerson = new();
@@ -29,7 +29,7 @@ public partial class PersonSearchViewModel : ObservableObject
 
     private void Search()
     {
-        FoundPerson = _personRepository.ShowPerson(Email);
+        FoundPerson = _personRepository.ShowPerson(SearchTerm);
 
     }
 

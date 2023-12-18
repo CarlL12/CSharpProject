@@ -72,10 +72,10 @@ namespace CSharpProject.Tests
                 LastName = "Lindqvist"
             };
 
-            string email = "carl@domain.com";
+            
             //Act
             personRepository.AddPerson(person);
-            personRepository.RemovePerson(email);
+            personRepository.RemovePerson(person);
             //Assert
             List<Person> content = personRepository.GetPersonList();
             bool personExists = content.Any(p => p.Email == person.Email);

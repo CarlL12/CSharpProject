@@ -1,5 +1,4 @@
 ﻿
-
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CSharpProject.Models;
@@ -26,7 +25,7 @@ public partial class PersonAddViewModel : ObservableObject
     {
         _sp = sp;
         _personRepository = personRepository;
-        UpdateProductList();
+
 
     }
 
@@ -41,7 +40,7 @@ public partial class PersonAddViewModel : ObservableObject
 
     [RelayCommand]
 
-    private void AddProductTolist()
+    private void AddPersonTolist()
     {
 
         if (PersonForm.FirstName != null)
@@ -54,8 +53,5 @@ public partial class PersonAddViewModel : ObservableObject
 
 
     }
-    public void UpdateProductList()
-    {
-        PersonList = new ObservableCollection<Person>(_personRepository.GetPersonList().Select(product => new Person()).ToList());
-    }
+
 }

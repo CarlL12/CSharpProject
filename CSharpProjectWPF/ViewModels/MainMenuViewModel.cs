@@ -2,6 +2,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CSharpProject.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CSharpProjectWPF.ViewModels;
@@ -9,10 +10,12 @@ namespace CSharpProjectWPF.ViewModels;
 public partial class MainMenuViewModel : ObservableObject
 {
     private readonly IServiceProvider _sp;
+    private readonly PersonRepository _personRepository;
 
-    public MainMenuViewModel(IServiceProvider sp)
+    public MainMenuViewModel(IServiceProvider sp, PersonRepository personRepository)
     {
         _sp = sp;
+        _personRepository = personRepository;
     }
 
     [RelayCommand]
@@ -35,4 +38,5 @@ public partial class MainMenuViewModel : ObservableObject
         var mainViewModel = _sp.GetRequiredService<MainViewModel>();
         mainViewModel.CurrentViewModel = _sp.GetRequiredService<PersonSearchViewModel>();
     }
+
 }

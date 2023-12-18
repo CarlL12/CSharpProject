@@ -1,6 +1,7 @@
 ﻿
 using CSharpProject.Interfaces;
 using CSharpProject.Services;
+using Newtonsoft.Json;
 
 namespace CSharpProject.Tests;
 
@@ -17,7 +18,7 @@ public class FileService_Tests
 
         //Act
 
-        bool result = fileService.SaveContentToFile(content);
+        bool result = fileService.SaveContentToFile(JsonConvert.SerializeObject(content));
 
         //Assert
         Assert.True(result);
