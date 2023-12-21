@@ -17,9 +17,7 @@ namespace CSharpProject.Repositories
         private List<Person> contentList = new List<Person>();
 
         public Person CurrentPerson { get; set; } = new Person();
-
-
-        
+   
         // hämta hela listan
         public List<Person> GetPersonList()
         {
@@ -29,14 +27,12 @@ namespace CSharpProject.Repositories
             {
                 contentList = JsonConvert.DeserializeObject<List<Person>>(content)!;
 
-                return contentList;
-                
+                return contentList; 
             }
             else
             {
                 return null!;
             }
-            
         }
         // lägga till person i listan
         public void AddPerson(Person person)
@@ -48,14 +44,11 @@ namespace CSharpProject.Repositories
             }
             else
             {
-
             }
-
         }
         // ta bort person ifrån listan
         public bool RemovePerson(Person person)
         {
-
 
             if (!contentList.Contains(person))
             {
@@ -101,7 +94,6 @@ namespace CSharpProject.Repositories
         // Retunerar hela listan
         public List<Person> ShowAllPersons()
         {
-
 
             return contentList ??= null!;
         }
